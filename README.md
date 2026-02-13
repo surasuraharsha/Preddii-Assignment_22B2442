@@ -16,7 +16,7 @@ This tool uses a technique called **RAG (Retrieval-Augmented Generation)**. Thin
 4.  **Retrieval:** When you ask a question, the system searches its index to find only the most relevant chunks of text.
 5.  **Answering:** It sends your question + the relevant text to a powerful AI model (Llama 3 via Groq), which reads the context and writes a precise answer.
 
-<img width="1919" height="925" alt="demo_torque" src="https://github.com/user-attachments/assets/87e46fbc-1ac2-4f95-aa1a-fbe0d2265c51" />
+<img width="950" height="450" alt="demo_torque" src="https://github.com/user-attachments/assets/87e46fbc-1ac2-4f95-aa1a-fbe0d2265c51" />
 
 
 ## 🛠️ Tools & Technologies Used
