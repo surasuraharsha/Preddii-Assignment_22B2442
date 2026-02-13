@@ -1,4 +1,4 @@
-# Preddii-Assignment_22B2442
+# Predii-Assignment_22B2442
 
 # 🚗 Vehicle Service Manual Assistant (RAG Pipeline)
 
