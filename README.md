@@ -30,9 +30,9 @@ This tool uses a technique called **RAG (Retrieval-Augmented Generation)**. Thin
 
 ### 1. Install Dependencies
 Open your terminal and install the required Python libraries:
-bash
+```bash
 pip install pymupdf sentence-transformers faiss-cpu groq numpy streamlit 
-
+```
 2. Setup API Key
 You will need a Groq API key to run the inference.
 
@@ -55,9 +55,9 @@ To interact with the tool via a friendly web interface:
 Export the code: Ensure your logic is saved in a Python file (e.g., app.py) instead of a notebook (.ipynb).
 
 Run the app: Open your terminal in the project folder and type:
-Bash:
+```Bash:
 streamlit run app.py
-
+```
 Use the App:
 
 A new tab will open in your browser (usually at http://localhost:8501).
