@@ -109,37 +109,26 @@ Type questions like:
 
 The AI will search the PDF and give you a specific answer based only on the manual's content.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-##💡 Ideas for Improvement
-If you want to take this project from a prototype to a production-ready application, here are the next steps:
+## 💡 Roadmap & Ideas for Improvement
 
-1. Better Table Handling
-Current Issue: Simple text extraction often mangles tables (rows and columns get mixed up), which are crucial in service manuals for specs like Torque or Pressure.
+This project is a solid prototype, but Vehicle Service Manuals are complex documents. To turn this into a production-grade tool, here are the recommended improvements:
 
-Solution: Use tools like pdfplumber or Tabula-py to detect and extract tables specifically as structured data.
+### 1. Advanced Table Extraction
+* **The Problem:** Service manuals contain critical data in tables (e.g., Torque Specifications, Oil Capacities). Standard text extraction often scrambles rows and columns, making it hard for the AI to associate a value (e.g., "15 Nm") with the correct component.
+* **The Solution:** Integrate libraries like **`pdfplumber`** or **`Camelot`**. These tools detect grid lines in PDFs and extract tables as structured data (JSON/CSV) rather than raw text, ensuring the AI reads the exact row-column relationship.
 
-2. Semantic Chunking
-Current Issue: The code cuts text every 1200 characters. This might cut a sentence or a specific instruction in half.
+### 2. Hybrid Search (Keyword + Vector)
+* **The Problem:** Vector search (FAISS) is great for concepts (e.g., "How to fix brakes"), but sometimes struggles with exact identifiers like **Error Codes (P0300)** or **Part Numbers**.
+* **The Solution:** Implement **Hybrid Search**. Combine the semantic power of FAISS with a keyword-based search engine (like **BM25**). This ensures that when a user searches for a specific code, the system finds that exact match first.
 
-Solution: Use "Recursive Character Text Splitter" (available in libraries like LangChain) to split text by paragraphs or sentences, ensuring that complete ideas stay together.
+### 3. Conversational Memory
+* **The Problem:** Currently, the bot treats every question as a standalone event. If you ask "How do I remove the alternator?" and then ask "What tools do I need for *that*?", the bot won't know what "that" refers to.
+* **The Solution:** Use **LangChain's memory modules** to store the chat history. Pass the previous 2-3 exchanges to the LLM so it understands context and follow-up questions.
 
-3. Chat Memory
-Current Issue: The bot treats every question as a new one. It doesn't remember what you just asked.
+### 4. Source Citations & Page References
+* **The Problem:** The user has to trust the AI blindly.
+* **The Solution:** Modify the metadata to include page numbers during the indexing phase. When the AI provides an answer, have it return the specific **Page Number** (e.g., *"Source: Page 42, Section 3.1"*) so the mechanic can verify the information.
 
-Solution: Implement a conversation history buffer so you can ask follow-up questions (e.g., "What tools do I need for that?").
-
-4. Hybrid Search
-Current Issue: Vector search is great for meaning, but sometimes you need exact keyword matches (like searching for a specific Error Code "P0300").
-
-Solution: Combine FAISS (vector search) with BM25 (keyword search) for the most accurate results.
-
-📝 Example Output Format
-The system is designed to return data in JSON format for easy integration with other apps:
-[
-  {
-    "component": "Master Cylinder",
-    "spec_type": "Torque",
-    "value": "15",
-    "unit": "Nm"
-  }
-]
-
+### 5. Multi-Modal Analysis (Reading Diagrams)
+* **The Problem:** Much of a service manual is visual—wiring diagrams, exploded views of engine assembly, etc. Text-only models miss this.
+* **The Solution:** Upgrade to a Multi-Modal model (like **Llama 3.2 Vision** or **GPT-4o**). This would allow users to upload a photo of a broken part and ask, *"What is this part, and how do I replace it based on the manual?"*
