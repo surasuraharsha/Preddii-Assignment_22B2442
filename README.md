@@ -66,13 +66,13 @@ numpy
 streamlit
 ```
 2. pdf_processor.py
-Create a file named pdf_processor.py and paste the Python logic that handles PDF reading and FAISS indexing (provided in the code steps).
+Download a file named pdf_processor.py from above and paste in the Python logic that handles PDF reading and FAISS indexing (provided in the code steps).
 
 3. llm_handler.py
-Create a file named llm_handler.py and paste the Groq/Llama 3 connection logic.
+Download a file named llm_handler.py from above and paste the Groq/Llama 3 connection logic.
 
 4. app.py
-Create a file named app.py and paste the main Streamlit interface code.
+Download a file named app.py from above and paste the main Streamlit interface code.
 
 Note: Also, place your PDF file (e.g., sample-service-manual.pdf) inside this same folder.
 
