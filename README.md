@@ -5,67 +5,79 @@
 ## 📖 Overview
 This project is an AI-powered tool designed to read complex Vehicle Service Manuals (PDFs) and answer technical questions about them.
 
-Instead of manually searching through hundreds of pages for torque specifications or fluid capacities, you can simply ask a question like *"What are the warnings for Master Cylinder Bleeding?"* and the system will retrieve the exact page content and extract the answer.
+Instead of manually searching through hundreds of pages for torque specifications or fluid capacities, you can simply ask a question like *"What are the warnings for Master Cylinder Bleeding?"* and the system will retrieve the exact page content.
 
 ---
 
-## ⚙️ Installation & Setup
+## ⚙️ Architecture & Design
+This tool uses a technique called **RAG (Retrieval-Augmented Generation)**:
+1.  **Reading:** Extracts text from PDFs using **PyMuPDF**.
+2.  **Indexing:** Converts text into numerical vectors using **Sentence-Transformers**.
+3.  **Retrieval:** Searches for relevant info using **FAISS** (Facebook AI Similarity Search).
+4.  **Generation:** Sends the context to **Llama 3** (via Groq API) to generate a structured answer.
+
+---
+
+## 🛠️ Installation & Setup
 
 ### 1. Install Dependencies
-Open your terminal and install the required Python libraries:
-```bash
+Open your **terminal** and install the required Python libraries:
+
 pip install pymupdf sentence-transformers faiss-cpu groq numpy streamlit
 
+
 2. Setup API Key
-You need a Groq API key to run the inference (Llama 3 model).
+You need a Groq API key to run the inference.
 
 Get a free API key from the Groq Console.
 
 Note: In a production environment, use environment variables or Streamlit secrets instead of hardcoding the key.
 
+
+
+📂 Project Structure
+Ensure your project folder contains exactly these files before running:
+
+📄 app.py (Main application logic)
+
+📄 llm_handler.py (Contains the Groq API client - Add your API Key here)
+
+📄 pdf_processor.py (Handles PDF text extraction)
+
+📄 requirements.txt (List of dependencies)
+
+📕 sample-service-manual.pdf (Your source PDF file)
+
 🚀 How to Run
-Option A: Run the Jupyter Notebook
-Best for experimenting with the logic step-by-step.
+You have two ways to use this tool:
+
+🅰️ Option A: Run the Jupyter Notebook
+Best for experimenting with the code logic step-by-step.
 
 Open Predii_(1).ipynb in Jupyter Notebook or Google Colab.
 
-Update the PDF_PATH variable to point to your service manual.
+Update the PDF_PATH variable to point to your service manual file.
 
 Execute the cells sequentially.
 
-Option B: Run the Streamlit Web UI
+🅱️ Option B: Run the Streamlit Web UI (Recommended)
 Best for interacting with the tool via a user-friendly web interface.
 
-1. Prepare Your Files
-Ensure your project folder contains exactly these files:
+Open your terminal inside the project folder.
 
-app.py (Main application logic)
+Run the following command:
 
-llm_handler.py (Contains the Groq API client - Add your API Key here)
-
-pdf_processor.py (Handles PDF text extraction)
-
-requirements.txt (List of dependencies)
-
-sample-service-manual.pdf (Your source PDF file)
-
-2. Launch the App
-Open your terminal in the project folder and run:
-
+Bash
 streamlit run app.py
-
-3. Access the Interface
 A new tab will automatically open in your browser (usually at http://localhost:8501).
 
 📖 User Guide: Using the Web Interface
-Once the app is running, follow these steps to get answers from your manual.
+Once the app is running, follow these steps to get answers.
 
 1. The Dashboard Layout
-The interface is divided into two sections:
+Left Sidebar: The "Document Library" where you load your PDF.
 
-Left Sidebar (Document Library): Controls for loading and processing your PDF.
-
-Main Screen: Where you ask questions and view results.
+Main Screen: The Chat Interface where you ask questions.
 
 2. Step-by-Step Instructions
 Step 1: Load Your Manual
@@ -73,11 +85,9 @@ Look at the Left Sidebar under "Document Library".
 
 Use the dropdown menu to Choose a manual (e.g., sample-service-manual.pdf).
 
-Note: The app only detects PDFs placed inside the project folder.
-
 Click the 🚀 Index Manual button.
 
-Wait for the success message. The system is reading and indexing the text.
+Wait for the success message. The system is now reading and indexing your file.
 
 Step 2: Ask a Question
 Go to the main input box labeled "Enter your question".
@@ -93,7 +103,7 @@ Press Enter.
 Step 3: View Results
 The system will display the extracted answers in structured cards:
 
-Torque/Specs: Cards displaying the Value and Unit (e.g., 175 Nm).
+Torque/Specs: Look for the Value and Unit (e.g., 175 Nm).
 
 Textual Answers: Clear explanations for procedures or warnings.
 
