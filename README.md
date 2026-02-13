@@ -50,24 +50,65 @@ Update the PDF_PATH variable to point to your service manual.
 Execute the cells sequentially.
 
 ## Option B: Run the Streamlit Web UI
-To interact with the tool via a friendly web interface:
 
-Export the code: Ensure your logic is saved in a Python file (e.g., app.py) instead of a notebook (.ipynb).
 
-Run the app: Open your terminal in the project folder and type:
-```Bash:
+## 📂 Step 1: Project Setup (Create the Files)
+Since this project runs locally, you need to create a folder (e.g., `Vehicle_Manual_App`) and create the following **4 files** inside it.
+
+### 1. `requirements.txt`
+Create a file named `requirements.txt` and paste this content:
+```text
+pymupdf
+sentence-transformers
+faiss-cpu
+groq
+numpy
+streamlit
+```
+2. pdf_processor.py
+Create a file named pdf_processor.py and paste the Python logic that handles PDF reading and FAISS indexing (provided in the code steps).
+
+3. llm_handler.py
+Create a file named llm_handler.py and paste the Groq/Llama 3 connection logic.
+
+4. app.py
+Create a file named app.py and paste the main Streamlit interface code.
+
+Note: Also, place your PDF file (e.g., sample-service-manual.pdf) inside this same folder.
+
+⚙️ Step 2: Installation
+Open your terminal (Command Prompt), navigate to this folder, and run the following command to install the necessary libraries:
+```bash
+pip install -r requirements.txt
+```
+🚀 Step 3: How to Run
+To start the web interface, run this command in your terminal:
+
+Bash
+```
 streamlit run app.py
 ```
-Use the App:
+A new tab will automatically open in your web browser (usually at http://localhost:8501).
 
-A new tab will open in your browser (usually at http://localhost:8501).
+Step 4: User Guide
+1. Configure the App
+API Key: On the left sidebar, paste your Groq API Key (starts with gsk_...).
 
-Upload your PDF via the sidebar.
+Upload: Click "Browse files" and select your service manual PDF.
 
-Type your question in the chat box and get the answer for the queries
+Index: Click the "🚀 Index Manual" button and wait for the "Success" message.
 
+2. Ask Questions
+Go to the main chat box in the center of the screen.
 
+Type questions like:
 
+"What is the torque for the front wheel hub?"
+
+"What is the part number of Shock absorber lower nut ?"
+
+The AI will search the PDF and give you a specific answer based only on the manual's content.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ##💡 Ideas for Improvement
 If you want to take this project from a prototype to a production-ready application, here are the next steps:
 
