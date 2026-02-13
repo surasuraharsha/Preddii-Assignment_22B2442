@@ -40,7 +40,7 @@ Get a free API key from Groq Console.
 
 Note: In the production app, do not hardcode the key. Use an environment variable or Streamlit secrets.
 
-3. Option A: Run the Jupyter Notebook
+##  Option A: Run the Jupyter Notebook
 If you want to experiment with the code logic step-by-step:
 
 Open Predii_(1).ipynb in Jupyter Notebook or Google Colab.
@@ -49,7 +49,7 @@ Update the PDF_PATH variable to point to your service manual.
 
 Execute the cells sequentially.
 
-4. Option B: Run the Streamlit Web UI
+## Option B: Run the Streamlit Web UI
 To interact with the tool via a friendly web interface:
 
 Export the code: Ensure your logic is saved in a Python file (e.g., app.py) instead of a notebook (.ipynb).
@@ -64,11 +64,11 @@ A new tab will open in your browser (usually at http://localhost:8501).
 
 Upload your PDF via the sidebar.
 
-Enter your Groq API Key.
+Type your question in the chat box and get the answer for the queries
 
-Type your question in the chat box.
 
-💡 Ideas for Improvement
+
+##💡 Ideas for Improvement
 If you want to take this project from a prototype to a production-ready application, here are the next steps:
 
 1. Better Table Handling
