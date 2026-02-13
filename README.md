@@ -15,7 +15,9 @@ This tool uses a technique called **RAG (Retrieval-Augmented Generation)**. Thin
 3.  **Indexing (The "Brain"):** It converts these text chunks into numbers (vectors) that represent their meaning. This allows the system to understand that "brakes" and "stopping" are related concepts.
 4.  **Retrieval:** When you ask a question, the system searches its index to find only the most relevant chunks of text.
 5.  **Answering:** It sends your question + the relevant text to a powerful AI model (Llama 3 via Groq), which reads the context and writes a precise answer.
-![Project Logo] (demo_images/demo_torque.png)
+
+<img width="1919" height="925" alt="demo_torque" src="https://github.com/user-attachments/assets/87e46fbc-1ac2-4f95-aa1a-fbe0d2265c51" />
+
 
 ## 🛠️ Tools & Technologies Used
 
